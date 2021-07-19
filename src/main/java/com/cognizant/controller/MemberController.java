@@ -70,8 +70,8 @@ public class MemberController {
 			headers.set("Authorization", token);
 
 			HttpEntity<Boolean> requestEntity = new HttpEntity<>(null, headers);
-			ResponseEntity<String> result = restTemp.exchange("http://cms-authorization-service/api/auth/validate",
-					HttpMethod.GET, requestEntity, String.class);
+			ResponseEntity<String> result = restTemp.exchange("${auth.url}", HttpMethod.GET, requestEntity,
+					String.class);
 			System.out.println(result.getBody());
 			if (result.getBody().equals("True")) {
 				res = this.membersPolicyRepo.viewbill(membid, policyId);
